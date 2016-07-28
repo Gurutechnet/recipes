@@ -1,0 +1,607 @@
+module recipe
+
+recipe {
+  VENDOR    cadence
+  TOOL      license
+  VERSION   2016-07-27
+  PKG_ITER  00
+  CATEGORY  eda
+  DESCRIPTION "Licences for Cadence tools"
+  LICENSE   None
+}
+
+
+module license-procs
+
+license production {
+        # Placed in license file for Incisive tool suite;
+        # normal:ISE license is searched for first and then the IES
+        # setenv SPECSIM_LIC_MODE reverses license search order to IES then ISE
+        setenv SPECSIM_LIC_MODE ""
+
+        # EUHPC and all EU satellite sites
+	if {[ arm::this_site_is eu ]} {
+           if {[expr floor( rand() * 2)] == 1.0} {
+       	   prepend-path CDS_LIC_FILE [join [list\
+      	   5280@euhpc-lic01.euhpc.arm.com\
+      	   5280@euhpc-lic02.euhpc.arm.com\
+       	   5280@nahpc-lic02.nahpc.arm.com\
+       	   5280@nahpc-lic04.nahpc.arm.com\
+           5280@nahpc-lic18.nahpc.arm.com\
+           5280@nahpc-lic20.nahpc.arm.com\
+           5280@nahpc-lic24.nahpc2.arm.com\
+           5280@nahpc-lic25.nahpc2.arm.com\
+       	   5280@blr-lic04.blr.arm.com\
+       	   5280@blr-lic05.blr.arm.com\
+           5290@euhpc-lic01.euhpc.arm.com\
+           5290@euhpc-lic02.euhpc.arm.com\
+           5290@nahpc-lic02.nahpc.arm.com\
+           5290@nahpc-lic04.nahpc.arm.com\
+       	   5290@blr-lic04.blr.arm.com\
+       	   5290@blr-lic05.blr.arm.com\
+	   ] :]
+       	   } else {
+           prepend-path CDS_LIC_FILE [join [list\
+       	   5280@euhpc-lic02.euhpc.arm.com\
+       	   5280@euhpc-lic01.euhpc.arm.com\
+       	   5280@nahpc-lic04.nahpc.arm.com\
+       	   5280@nahpc-lic02.nahpc.arm.com\
+           5280@nahpc-lic20.nahpc.arm.com\
+           5280@nahpc-lic18.nahpc.arm.com\
+           5280@nahpc-lic25.nahpc2.arm.com\
+           5280@nahpc-lic24.nahpc2.arm.com\
+       	   5280@blr-lic05.blr.arm.com\
+       	   5280@blr-lic04.blr.arm.com\
+           5290@euhpc-lic02.euhpc.arm.com\
+           5290@euhpc-lic01.euhpc.arm.com\
+       	   5290@blr-lic05.blr.arm.com\
+       	   5290@blr-lic04.blr.arm.com\
+           5290@nahpc-lic04.nahpc.arm.com\
+           5290@nahpc-lic02.nahpc.arm.com\
+           ] :]
+       	   }
+        }
+        # NAHPC and all NA satellite sites
+        if {[ arm::this_site_is northamer ]} {
+	   set licrand [expr floor( rand() * 4)]
+           if {$licrand == 1.0} {
+           prepend-path CDS_LIC_FILE [join [list\
+           5280@nahpc-lic02.nahpc.arm.com\
+           5280@nahpc-lic04.nahpc.arm.com\
+           5280@nahpc-lic18.nahpc.arm.com\
+           5280@nahpc-lic20.nahpc.arm.com\
+	   ] :]
+	   if {[arm::this_site_is nahpc2]} {
+	   prepend-path CDS_LIC_FILE [join [list\
+           5280@nahpc-lic24.nahpc2.arm.com\
+           5280@nahpc-lic25.nahpc2.arm.com\
+	   ] :] } else {
+           append-path CDS_LIC_FILE [join [list\
+           5280@nahpc-lic24.nahpc2.arm.com\
+           5280@nahpc-lic25.nahpc2.arm.com\
+           ] :] } 
+	   append-path CDS_LIC_FILE [join [list\
+           5280@euhpc-lic01.euhpc.arm.com\
+           5280@euhpc-lic02.euhpc.arm.com\
+           5280@blr-lic04.blr.arm.com\
+           5280@blr-lic05.blr.arm.com\
+           5290@nahpc-lic02.nahpc.arm.com\
+           5290@nahpc-lic04.nahpc.arm.com\
+           5290@euhpc-lic01.euhpc.arm.com\
+           5290@euhpc-lic02.euhpc.arm.com\
+           5290@blr-lic04.blr.arm.com\
+           5290@blr-lic05.blr.arm.com\
+           ] :]
+           } elseif {$licrand == 2.0} {
+           prepend-path CDS_LIC_FILE [join [list\
+           5280@nahpc-lic04.nahpc.arm.com\
+           5280@nahpc-lic18.nahpc.arm.com\
+           5280@nahpc-lic20.nahpc.arm.com\
+           5280@nahpc-lic02.nahpc.arm.com\
+	   ] :]
+           if {[arm::this_site_is nahpc2]} {
+           prepend-path CDS_LIC_FILE [join [list\
+           5280@nahpc-lic25.nahpc2.arm.com\
+           5280@nahpc-lic24.nahpc2.arm.com\
+           ] :] } else {
+           append-path CDS_LIC_FILE [join [list\
+           5280@nahpc-lic25.nahpc2.arm.com\
+           5280@nahpc-lic24.nahpc2.arm.com\
+           ] :] }
+           append-path CDS_LIC_FILE [join [list\
+           5280@euhpc-lic02.euhpc.arm.com\
+           5280@euhpc-lic01.euhpc.arm.com\
+           5280@blr-lic05.blr.arm.com\
+           5280@blr-lic04.blr.arm.com\
+           5290@nahpc-lic04.nahpc.arm.com\
+           5290@nahpc-lic02.nahpc.arm.com\
+           5290@euhpc-lic02.euhpc.arm.com\
+           5290@euhpc-lic01.euhpc.arm.com\
+           5290@blr-lic05.blr.arm.com\
+           5290@blr-lic04.blr.arm.com\
+           ] :]
+	   } elseif {$licrand == 3.0} {
+           prepend-path CDS_LIC_FILE [join [list\
+           5280@nahpc-lic18.nahpc.arm.com\
+           5280@nahpc-lic20.nahpc.arm.com\
+           5280@nahpc-lic02.nahpc.arm.com\
+           5280@nahpc-lic04.nahpc.arm.com\
+	   ] :]
+           if {[arm::this_site_is nahpc2]} {
+           prepend-path CDS_LIC_FILE [join [list\
+           5280@nahpc-lic24.nahpc2.arm.com\
+           5280@nahpc-lic25.nahpc2.arm.com\
+           ] :] } else {
+           append-path CDS_LIC_FILE [join [list\
+           5280@nahpc-lic24.nahpc2.arm.com\
+           5280@nahpc-lic25.nahpc2.arm.com\
+           ] :] }
+           append-path CDS_LIC_FILE [join [list\
+           5280@euhpc-lic01.euhpc.arm.com\
+           5280@euhpc-lic02.euhpc.arm.com\
+           5280@blr-lic04.blr.arm.com\
+           5280@blr-lic05.blr.arm.com\
+           5290@nahpc-lic02.nahpc.arm.com\
+           5290@nahpc-lic04.nahpc.arm.com\
+           5290@euhpc-lic01.euhpc.arm.com\
+           5290@euhpc-lic02.euhpc.arm.com\
+           5290@blr-lic04.blr.arm.com\
+           5290@blr-lic05.blr.arm.com\
+           ] :]
+	   } else {
+           prepend-path CDS_LIC_FILE [join [list\
+           5280@nahpc-lic20.nahpc.arm.com\
+           5280@nahpc-lic02.nahpc.arm.com\
+           5280@nahpc-lic04.nahpc.arm.com\
+           5280@nahpc-lic18.nahpc.arm.com\
+	   ] :]
+           if {[arm::this_site_is nahpc2]} {
+           prepend-path CDS_LIC_FILE [join [list\
+           5280@nahpc-lic25.nahpc2.arm.com\
+           5280@nahpc-lic24.nahpc2.arm.com\
+           ] :] } else {
+           append-path CDS_LIC_FILE [join [list\
+           5280@nahpc-lic25.nahpc2.arm.com\
+           5280@nahpc-lic24.nahpc2.arm.com\
+           ] :] }
+           append-path CDS_LIC_FILE [join [list\
+           5280@euhpc-lic02.euhpc.arm.com\
+           5280@euhpc-lic01.euhpc.arm.com\
+           5280@blr-lic05.blr.arm.com\
+           5280@blr-lic04.blr.arm.com\
+           5290@nahpc-lic04.nahpc.arm.com\
+           5290@nahpc-lic02.nahpc.arm.com\
+           5290@euhpc-lic02.euhpc.arm.com\
+           5290@euhpc-lic01.euhpc.arm.com\
+           5290@blr-lic05.blr.arm.com\
+           5290@blr-lic04.blr.arm.com\
+           ] :]
+           }
+        }
+        # Bangalore and all Asia Pacific satellite sites
+        if {[arm::this_site_is asiapac]} {
+     	    if {[expr floor( rand() * 2)] == 1.0} {
+            prepend-path CDS_LIC_FILE [join [list\
+       	    5280@blr-lic04.blr.arm.com\
+       	    5280@blr-lic05.blr.arm.com\
+       	    5280@euhpc-lic01.euhpc.arm.com\
+       	    5280@euhpc-lic02.euhpc.arm.com\
+       	    5280@nahpc-lic02.nahpc.arm.com\
+       	    5280@nahpc-lic04.nahpc.arm.com\
+            5280@nahpc-lic18.nahpc.arm.com\
+            5280@nahpc-lic20.nahpc.arm.com\
+            5280@nahpc-lic24.nahpc2.arm.com\
+            5280@nahpc-lic25.nahpc2.arm.com\
+            5290@blr-lic04.blr.arm.com\
+            5290@blr-lic05.blr.arm.com\
+            5290@euhpc-lic01.euhpc.arm.com\
+            5290@euhpc-lic02.euhpc.arm.com\
+            5290@nahpc-lic02.nahpc.arm.com\
+            5290@nahpc-lic04.nahpc.arm.com\
+            ] :]
+       	    } else {
+            prepend-path CDS_LIC_FILE [join [list\
+       	    5280@blr-lic05.blr.arm.com\
+            5280@blr-lic04.blr.arm.com\
+       	    5280@euhpc-lic02.euhpc.arm.com\
+       	    5280@euhpc-lic01.euhpc.arm.com\
+       	    5280@nahpc-lic04.nahpc.arm.com\
+       	    5280@nahpc-lic02.nahpc.arm.com\
+            5280@nahpc-lic20.nahpc.arm.com\
+            5280@nahpc-lic18.nahpc.arm.com\
+            5280@nahpc-lic25.nahpc2.arm.com\
+            5280@nahpc-lic24.nahpc2.arm.com\
+            5290@blr-lic05.blr.arm.com\
+            5290@blr-lic04.blr.arm.com\
+            5290@euhpc-lic02.euhpc.arm.com\
+            5290@euhpc-lic01.euhpc.arm.com\
+       	    5290@nahpc-lic04.nahpc.arm.com\
+       	    5290@nahpc-lic02.nahpc.arm.com\
+            ] :]
+            }
+         }
+}
+
+license mw_nahpc {
+        # Used when NAHPC license servers are offline
+        #
+        # Placed in license file for Incisive tool suite;
+        # normal:ISE license is searched for first and then the IES
+        # setenv SPECSIM_LIC_MODE reverses license search order to IES then ISE
+        setenv SPECSIM_LIC_MODE ""
+        #
+        # EUHPC & NAHPC and all EU & NA satellite sites
+        if {[ arm::this_site_is eu ] || [ arm::this_site_is northamer ]} {
+           if {[expr floor( rand() * 2)] == 1.0} {
+           prepend-path CDS_LIC_FILE [join [list\
+           5280@euhpc-lic01.euhpc.arm.com\
+           5280@euhpc-lic02.euhpc.arm.com\
+           5280@blr-lic04.blr.arm.com\
+           5280@blr-lic05.blr.arm.com\
+           5290@euhpc-lic01.euhpc.arm.com\
+           5290@euhpc-lic02.euhpc.arm.com\
+           5290@blr-lic04.blr.arm.com\
+           5290@blr-lic05.blr.arm.com\
+           ] :]
+           } else {
+           prepend-path CDS_LIC_FILE [join [list\
+           5280@euhpc-lic02.euhpc.arm.com\
+           5280@euhpc-lic01.euhpc.arm.com\
+           5280@blr-lic05.blr.arm.com\
+           5280@blr-lic04.blr.arm.com\
+           5290@euhpc-lic02.euhpc.arm.com\
+           5290@euhpc-lic01.euhpc.arm.com\
+           5290@blr-lic05.blr.arm.com\
+           5290@blr-lic04.blr.arm.com\
+           ] :]
+           }
+        }
+        # Bangalore and allAsia Pacific satalite sites
+        if {[arm::this_site_is asiapac]} {
+           if {[expr floor( rand() * 2)] == 1.0} {
+           prepend-path CDS_LIC_FILE [join [list\
+           5280@blr-lic04.blr.arm.com\
+           5280@blr-lic05.blr.arm.com\
+           5280@euhpc-lic01.euhpc.arm.com\
+           5280@euhpc-lic02.euhpc.arm.com\
+           5290@blr-lic04.blr.arm.com\
+           5290@blr-lic05.blr.arm.com\
+           5290@euhpc-lic01.euhpc.arm.com\
+           5290@euhpc-lic02.euhpc.arm.com\
+           ] :]
+           } else {
+           prepend-path CDS_LIC_FILE [join [list\
+           5280@blr-lic05.blr.arm.com\
+           5280@blr-lic04.blr.arm.com\
+           5280@euhpc-lic02.euhpc.arm.com\
+           5280@euhpc-lic01.euhpc.arm.com\
+           5290@blr-lic05.blr.arm.com\
+           5290@blr-lic04.blr.arm.com\
+           5290@euhpc-lic02.euhpc.arm.com\
+           5290@euhpc-lic01.euhpc.arm.com\
+           ] :]
+           }
+        }
+}
+
+license mw_nahpc-blr {
+        # Used when NAHPC and Bangalore license servers are offline
+        #
+        # Placed in license file for Incisive tool suite;
+        # normal:ISE license is searched for first and then the IES
+        # setenv SPECSIM_LIC_MODE reverses license search order to IES then ISE
+        setenv SPECSIM_LIC_MODE ""
+        #
+        # All EUHPC, NAHPC, Bangalore  and all global satellite sites
+        if {[ arm::this_site_is eu ] || [ arm::this_site_is northamer ] || [arm::this_site_is asiapac]} {
+           if {[expr floor( rand() * 2)] == 1.0} {
+           prepend-path CDS_LIC_FILE [join [list\
+           5280@euhpc-lic01.euhpc.arm.com\
+           5280@euhpc-lic02.euhpc.arm.com\
+           5290@euhpc-lic01.euhpc.arm.com\
+           5290@euhpc-lic02.euhpc.arm.com\
+           ] :]
+           } else {
+           prepend-path CDS_LIC_FILE [join [list\
+           5280@euhpc-lic02.euhpc.arm.com\
+           5280@euhpc-lic01.euhpc.arm.com\
+           5290@euhpc-lic02.euhpc.arm.com\
+           5290@euhpc-lic01.euhpc.arm.com\
+           ] :]
+           }
+        }
+}
+
+license mw_euhpc {
+        # Used when EUPHC license server is offline
+        #
+        # Placed in license file for Incisive tool suite;
+        # normal:ISE license is searched for first and then the IES
+        # setenv SPECSIM_LIC_MODE reverses license search order to IES then ISE
+        setenv SPECSIM_LIC_MODE ""
+        #
+        # NAHPC & EUHPC and all EU & NA satellite sites
+        if {[ arm::this_site_is northamer ] || [ arm::this_site_is eu ]} {
+          set licrand [expr floor( rand() * 4)]
+           if {$licrand == 1.0} {
+           prepend-path CDS_LIC_FILE [join [list\
+           5280@nahpc-lic02.nahpc.arm.com\
+           5280@nahpc-lic04.nahpc.arm.com\
+           5280@nahpc-lic18.nahpc.arm.com\
+           5280@nahpc-lic20.nahpc.arm.com\
+           5280@nahpc-lic24.nahpc2.arm.com\
+           5280@nahpc-lic25.nahpc2.arm.com\
+           5280@blr-lic04.blr.arm.com\
+           5280@blr-lic05.blr.arm.com\
+           5290@nahpc-lic02.nahpc.arm.com\
+           5290@nahpc-lic04.nahpc.arm.com\
+           5290@blr-lic04.blr.arm.com\
+           5290@blr-lic05.blr.arm.com\
+           ] :]
+           } elseif {$licrand == 2.0} {
+           prepend-path CDS_LIC_FILE [join [list\
+           5280@nahpc-lic04.nahpc.arm.com\
+           5280@nahpc-lic18.nahpc.arm.com\
+           5280@nahpc-lic20.nahpc.arm.com\
+           5280@nahpc-lic02.nahpc.arm.com\
+           5280@nahpc-lic25.nahpc2.arm.com\
+           5280@nahpc-lic24.nahpc2.arm.com\
+           5280@blr-lic05.blr.arm.com\
+           5280@blr-lic04.blr.arm.com\
+           5290@nahpc-lic04.nahpc.arm.com\
+           5290@nahpc-lic02.nahpc.arm.com\
+           5290@blr-lic05.blr.arm.com\
+           5290@blr-lic04.blr.arm.com\
+           ] :]
+           } elseif {$licrand == 3.0} {
+           prepend-path CDS_LIC_FILE [join [list\
+           5280@nahpc-lic18.nahpc.arm.com\
+           5280@nahpc-lic20.nahpc.arm.com\
+           5280@nahpc-lic02.nahpc.arm.com\
+           5280@nahpc-lic04.nahpc.arm.com\
+           5280@nahpc-lic24.nahpc2.arm.com\
+           5280@nahpc-lic25.nahpc2.arm.com\
+           5280@blr-lic04.blr.arm.com\
+           5280@blr-lic05.blr.arm.com\
+           5290@nahpc-lic02.nahpc.arm.com\
+           5290@nahpc-lic04.nahpc.arm.com\
+           5290@blr-lic04.blr.arm.com\
+           5290@blr-lic05.blr.arm.com\
+           ] :]
+           } else {
+           prepend-path CDS_LIC_FILE [join [list\
+           5280@nahpc-lic20.nahpc.arm.com\
+           5280@nahpc-lic02.nahpc.arm.com\
+           5280@nahpc-lic04.nahpc.arm.com\
+           5280@nahpc-lic18.nahpc.arm.com\
+           5280@nahpc-lic25.nahpc2.arm.com\
+           5280@nahpc-lic24.nahpc2.arm.com\
+           5280@blr-lic05.blr.arm.com\
+           5280@blr-lic04.blr.arm.com\
+           5290@nahpc-lic04.nahpc.arm.com\
+           5290@nahpc-lic02.nahpc.arm.com\
+           5290@blr-lic05.blr.arm.com\
+           5290@blr-lic04.blr.arm.com\
+           ] :]
+           }
+        }
+        # Bangalore and all Asia Pacific satellite sites
+        if {[arm::this_site_is asiapac]} {
+           if {[expr floor( rand() * 2)] == 1.0} {
+           prepend-path CDS_LIC_FILE [join [list\
+           5280@blr-lic04.blr.arm.com\
+           5280@blr-lic05.blr.arm.com\
+           5280@nahpc-lic02.nahpc.arm.com\
+           5280@nahpc-lic04.nahpc.arm.com\
+           5280@nahpc-lic18.nahpc.arm.com\
+           5280@nahpc-lic20.nahpc.arm.com\
+           5280@nahpc-lic24.nahpc2.arm.com\
+           5280@nahpc-lic25.nahpc2.arm.com\
+           5290@blr-lic04.blr.arm.com\
+           5290@blr-lic05.blr.arm.com\
+           5290@nahpc-lic02.nahpc.arm.com\
+           5290@nahpc-lic04.nahpc.arm.com\
+           ] :]
+           } else {
+           prepend-path CDS_LIC_FILE [join [list\
+           5280@blr-lic05.blr.arm.com\
+           5280@blr-lic04.blr.arm.com\
+           5280@nahpc-lic20.nahpc.arm.com\
+           5280@nahpc-lic18.nahpc.arm.com\
+           5280@nahpc-lic02.nahpc.arm.com\
+           5280@nahpc-lic04.nahpc.arm.com\
+           5280@nahpc-lic25.nahpc2.arm.com\
+           5280@nahpc-lic24.nahpc2.arm.com\
+           5290@blr-lic05.blr.arm.com\
+           5290@blr-lic04.blr.arm.com\
+           5290@nahpc-lic04.nahpc.arm.com\
+           5290@nahpc-lic02.nahpc.arm.com\
+           ] :]
+           }
+        }
+}
+
+license mw_euhpc-blr {
+        # Used when EUPHC and Banglore license servers are offline
+        # Placed in license file for Incisive tool suite;
+        # normal:ISE license is searched for first and then the IES
+        # setenv SPECSIM_LIC_MODE reverses license search order to IES then ISE
+        setenv SPECSIM_LIC_MODE ""
+        #
+        # EUPC, NAHPC, Bangalore and all global satellite sites  
+        if { [ arm::this_site_is northamer ] || [ arm::this_site_is eu ] || [arm::this_site_is asiapac] } {
+          set licrand [expr floor( rand() * 4)]
+           if {$licrand == 1.0} {
+           prepend-path CDS_LIC_FILE [join [list\
+           5280@nahpc-lic02.nahpc.arm.com\
+           5280@nahpc-lic04.nahpc.arm.com\
+           5280@nahpc-lic18.nahpc.arm.com\
+           5280@nahpc-lic20.nahpc.arm.com\
+           5280@nahpc-lic24.nahpc2.arm.com\
+           5280@nahpc-lic25.nahpc2.arm.com\
+           5290@nahpc-lic02.nahpc.arm.com\
+           5290@nahpc-lic04.nahpc.arm.com\
+           ] :]
+           } elseif {$licrand == 2.0} {
+           prepend-path CDS_LIC_FILE [join [list\
+           5280@nahpc-lic04.nahpc.arm.com\
+           5280@nahpc-lic18.nahpc.arm.com\
+           5280@nahpc-lic20.nahpc.arm.com\
+           5280@nahpc-lic02.nahpc.arm.com\
+           5280@nahpc-lic25.nahpc2.arm.com\
+           5280@nahpc-lic24.nahpc2.arm.com\
+           5290@nahpc-lic04.nahpc.arm.com\
+           5290@nahpc-lic02.nahpc.arm.com\
+           ] :]
+           } elseif {$licrand == 3.0} {
+           prepend-path CDS_LIC_FILE [join [list\
+           5280@nahpc-lic18.nahpc.arm.com\
+           5280@nahpc-lic20.nahpc.arm.com\
+           5280@nahpc-lic02.nahpc.arm.com\
+           5280@nahpc-lic04.nahpc.arm.com\
+           5280@nahpc-lic24.nahpc2.arm.com\
+           5280@nahpc-lic25.nahpc2.arm.com\
+           5290@nahpc-lic02.nahpc.arm.com\
+           5290@nahpc-lic04.nahpc.arm.com\
+           ] :]
+           } else {
+           prepend-path CDS_LIC_FILE [join [list\
+           5280@nahpc-lic20.nahpc.arm.com\
+           5280@nahpc-lic02.nahpc.arm.com\
+           5280@nahpc-lic04.nahpc.arm.com\
+           5280@nahpc-lic18.nahpc.arm.com\
+           5280@nahpc-lic25.nahpc2.arm.com\
+           5280@nahpc-lic24.nahpc2.arm.com\
+           5290@nahpc-lic04.nahpc.arm.com\
+           5290@nahpc-lic02.nahpc.arm.com\
+           ] :]
+           }
+        }
+}
+
+license mw_blr {
+        # Used when Banglore license servers are offline
+        # Placed in license file for Incisive tool suite;
+        # normal:ISE license is searched for first and then the IES
+        # setenv SPECSIM_LIC_MODE reverses license search order to IES then ISE
+        setenv SPECSIM_LIC_MODE ""
+        #
+        # NAHPC and NA satellite sites
+        if {[ arm::this_site_is northamer ]} {
+           set licrand [expr floor( rand() * 4)]
+           if {$licrand == 1.0} {
+           prepend-path CDS_LIC_FILE [join [list\
+           5280@nahpc-lic02.nahpc.arm.com\
+           5280@nahpc-lic04.nahpc.arm.com\
+           5280@nahpc-lic18.nahpc.arm.com\
+           5280@nahpc-lic20.nahpc.arm.com\
+           5280@nahpc-lic24.nahpc2.arm.com\
+           5280@nahpc-lic25.nahpc2.arm.com\
+           5280@euhpc-lic01.euhpc.arm.com\
+           5280@euhpc-lic02.euhpc.arm.com\
+           5290@nahpc-lic02.nahpc.arm.com\
+           5290@nahpc-lic04.nahpc.arm.com\
+           5290@euhpc-lic01.euhpc.arm.com\
+           5290@euhpc-lic02.euhpc.arm.com\
+           ] :]
+           } elseif {$licrand == 2.0} {
+           prepend-path CDS_LIC_FILE [join [list\
+           5280@nahpc-lic04.nahpc.arm.com\
+           5280@nahpc-lic18.nahpc.arm.com\
+           5280@nahpc-lic20.nahpc.arm.com\
+           5280@nahpc-lic02.nahpc.arm.com\
+           5280@nahpc-lic25.nahpc2.arm.com\
+           5280@nahpc-lic24.nahpc2.arm.com\
+           5280@euhpc-lic02.euhpc.arm.com\
+           5280@euhpc-lic01.euhpc.arm.com\
+           5290@nahpc-lic04.nahpc.arm.com\
+           5290@nahpc-lic02.nahpc.arm.com\
+           5290@euhpc-lic02.euhpc.arm.com\
+           5290@euhpc-lic01.euhpc.arm.com\
+           ] :]
+           } elseif {$licrand == 3.0} {
+           prepend-path CDS_LIC_FILE [join [list\
+           5280@nahpc-lic18.nahpc.arm.com\
+           5280@nahpc-lic20.nahpc.arm.com\
+           5280@nahpc-lic02.nahpc.arm.com\
+           5280@nahpc-lic04.nahpc.arm.com\
+           5280@nahpc-lic24.nahpc2.arm.com\
+           5280@nahpc-lic25.nahpc2.arm.com\
+           5280@euhpc-lic01.euhpc.arm.com\
+           5280@euhpc-lic02.euhpc.arm.com\
+           5290@nahpc-lic02.nahpc.arm.com\
+           5290@nahpc-lic04.nahpc.arm.com\
+           5290@euhpc-lic01.euhpc.arm.com\
+           5290@euhpc-lic02.euhpc.arm.com\
+           ] :]
+           } else {
+           prepend-path CDS_LIC_FILE [join [list\
+           5280@nahpc-lic20.nahpc.arm.com\
+           5280@nahpc-lic02.nahpc.arm.com\
+           5280@nahpc-lic04.nahpc.arm.com\
+           5280@nahpc-lic18.nahpc.arm.com\
+           5280@nahpc-lic25.nahpc2.arm.com\
+           5280@nahpc-lic24.nahpc2.arm.com\
+           5280@euhpc-lic02.euhpc.arm.com\
+           5280@euhpc-lic01.euhpc.arm.com\
+           5290@nahpc-lic04.nahpc.arm.com\
+           5290@nahpc-lic02.nahpc.arm.com\
+           5290@euhpc-lic02.euhpc.arm.com\
+           5290@euhpc-lic01.euhpc.arm.com\
+           ] :]
+           }
+        }
+        # EUHPC and EU satellite sites
+        if {[ arm::this_site_is eu ] || [ arm::this_site_is asiapac ]} {
+           if {[expr floor( rand() * 2)] == 1.0} {
+           prepend-path CDS_LIC_FILE [join [list\
+           5280@euhpc-lic01.euhpc.arm.com\
+           5280@euhpc-lic02.euhpc.arm.com\
+           5280@nahpc-lic02.nahpc.arm.com\
+           5280@nahpc-lic04.nahpc.arm.com\
+           5280@nahpc-lic18.nahpc.arm.com\
+           5280@nahpc-lic20.nahpc.arm.com\
+           5280@nahpc-lic24.nahpc2.arm.com\
+           5280@nahpc-lic25.nahpc2.arm.com\
+           5290@euhpc-lic01.euhpc.arm.com\
+           5290@euhpc-lic02.euhpc.arm.com\
+           5290@nahpc-lic02.nahpc.arm.com\
+           5290@nahpc-lic04.nahpc.arm.com\
+           ] :]
+           } else {
+           prepend-path CDS_LIC_FILE [join [list\
+           5280@euhpc-lic02.euhpc.arm.com\
+           5280@euhpc-lic01.euhpc.arm.com\
+           5280@nahpc-lic04.nahpc.arm.com\
+           5280@nahpc-lic02.nahpc.arm.com\
+           5280@nahpc-lic20.nahpc.arm.com\
+           5280@nahpc-lic18.nahpc.arm.com\
+           5280@nahpc-lic25.nahpc2.arm.com\
+           5280@nahpc-lic24.nahpc2.arm.com\
+           5290@euhpc-lic02.euhpc.arm.com\
+           5290@euhpc-lic01.euhpc.arm.com\
+           5290@nahpc-lic04.nahpc.arm.com\
+           5290@nahpc-lic02.nahpc.arm.com\
+           ] :]
+           }
+         }
+}
+
+license evaluation {
+        # Evaluations servers for All sites
+        #
+        # Placed in license file for Incisive tool suite;
+        # normal:ISE license is searched for first and then the IES
+        # setenv SPECSIM_LIC_MODE reverses license search order to IES then ISE
+        setenv SPECSIM_LIC_MODE ""
+        #
+        prepend-path CDS_LIC_FILE [join [list\
+				5280@euhpc-eval01.euhpc.arm.com\
+				5280@nahpc-eval01.nahpc.arm.com\
+				5290@euhpc-eval01.euhpc.arm.com\
+				5290@nahpc-eval01.nahpc.arm.com\
+				] :]
+}
+
+module licenses
+
