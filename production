@@ -1,0 +1,80 @@
+#%Module
+            #
+            # THIS IS AN AUTOMATICALLY GENERATED FILE.
+            # DO NOT EDIT IT.
+            #
+            # - MENTOR
+            #   PRODUCTION
+            ################################################################################
+            #- import arm library routine Load modules Tcl toolbox
+            package require arm
+            
+            
+            
+
+# Adding the MGC_TMPDIR variable to make Calibre use "/tmp" instead of "/var/tmp"
+setenv MGC_TMPDIR  "/tmp"
+# European Union
+if {[ arm::this_site_is eu ]} {
+   set licrand [expr floor( rand() * 4)]
+   if {$licrand == 1.0} {
+      prepend-path MGLS_LICENSE_FILE [join [list 1717@euhpc-lic07.euhpc.arm.com 1717@euhpc-lic14.euhpc.arm.com 1717@euhpc-lic15.euhpc.arm.com 1717@euhpc-lic16.euhpc.arm.com 1717@nahpc-lic03.nahpc.arm.com 1717@nahpc-lic07.nahpc.arm.com 1717@nahpc-lic10.nahpc.arm.com 1717@nahpc-lic14.nahpc.arm.com 1717@nahpc-lic16.nahpc.arm.com 1717@nahpc-lic22.nahpc2.arm.com 1717@nahpc-lic23.nahpc2.arm.com 1717@blr-lic03.blr.arm.com 1717@blr-lic04.blr.arm.com] :]
+      } elseif {$licrand == 2.0} {
+      prepend-path MGLS_LICENSE_FILE [join [list 1717@euhpc-lic14.euhpc.arm.com 1717@euhpc-lic15.euhpc.arm.com 1717@euhpc-lic16.euhpc.arm.com 1717@euhpc-lic07.euhpc.arm.com 1717@nahpc-lic07.nahpc.arm.com 1717@nahpc-lic10.nahpc.arm.com 1717@nahpc-lic14.nahpc.arm.com 1717@nahpc-lic16.nahpc.arm.com 1717@nahpc-lic23.nahpc2.arm.com 1717@nahpc-lic22.nahpc2.arm.com 1717@nahpc-lic03.nahpc.arm.com 1717@blr-lic04.blr.arm.com 1717@blr-lic03.blr.arm.com] :]
+      } elseif {$licrand == 3.0} {
+      prepend-path MGLS_LICENSE_FILE [join [list 1717@euhpc-lic15.euhpc.arm.com 1717@euhpc-lic16.euhpc.arm.com 1717@euhpc-lic07.euhpc.arm.com 1717@euhpc-lic14.euhpc.arm.com 1717@nahpc-lic10.nahpc.arm.com 1717@nahpc-lic14.nahpc.arm.com 1717@nahpc-lic16.nahpc.arm.com 1717@nahpc-lic22.nahpc2.arm.com 1717@nahpc-lic23.nahpc2.arm.com 1717@nahpc-lic03.nahpc.arm.com 1717@nahpc-lic07.nahpc.arm.com 1717@blr-lic03.blr.arm.com 1717@blr-lic04.blr.arm.com] :]
+      } else {
+      prepend-path MGLS_LICENSE_FILE [join [list 1717@euhpc-lic16.euhpc.arm.com 1717@euhpc-lic07.euhpc.arm.com 1717@euhpc-lic14.euhpc.arm.com 1717@euhpc-lic15.euhpc.arm.com 1717@nahpc-lic14.nahpc.arm.com 1717@nahpc-lic16.nahpc.arm.com 1717@nahpc-lic23.nahpc2.arm.com 1717@nahpc-lic22.nahpc2.arm.com 1717@nahpc-lic03.nahpc.arm.com 1717@nahpc-lic07.nahpc.arm.com 1717@nahpc-lic10.nahpc.arm.com 1717@blr-lic04.blr.arm.com 1717@blr-lic03.blr.arm.com] :]
+      }
+}
+
+# North America
+if {[ arm::this_site_is usa ]} {
+   set licrand [expr floor( rand() * 5)]
+   if {$licrand == 1.0} {
+      prepend-path MGLS_LICENSE_FILE [join [list 1717@nahpc-lic03.nahpc.arm.com 1717@nahpc-lic07.nahpc.arm.com 1717@nahpc-lic10.nahpc.arm.com 1717@nahpc-lic14.nahpc.arm.com 1717@nahpc-lic16.nahpc.arm.com] :]
+      if {[arm::this_site_is nahpc2]} {
+      prepend-path MGLS_LICENSE_FILE [join [list 1717@nahpc-lic22.nahpc2.arm.com 1717@nahpc-lic23.nahpc2.arm.com] :] 
+      } else {
+      append-path MGLS_LICENSE_FILE [join [list 1717@nahpc-lic22.nahpc2.arm.com 1717@nahpc-lic23.nahpc2.arm.com] :] }
+      append-path MGLS_LICENSE_FILE [join [list 1717@euhpc-lic07.euhpc.arm.com 1717@euhpc-lic14.euhpc.arm.com 1717@euhpc-lic15.euhpc.arm.com 1717@euhpc-lic16.euhpc.arm.com 1717@blr-lic03.blr.arm.com 1717@blr-lic04.blr.arm.com] :]
+      } elseif {$licrand == 2.0} {
+      prepend-path MGLS_LICENSE_FILE [join [list 1717@nahpc-lic07.nahpc.arm.com 1717@nahpc-lic10.nahpc.arm.com 1717@nahpc-lic14.nahpc.arm.com 1717@nahpc-lic16.nahpc.arm.com 1717@nahpc-lic03.nahpc.arm.com] :]
+      if {[arm::this_site_is nahpc2]} {
+      prepend-path MGLS_LICENSE_FILE [join [list 1717@nahpc-lic23.nahpc2.arm.com 1717@nahpc-lic22.nahpc2.arm.com] :] 
+      } else {
+      append-path MGLS_LICENSE_FILE [join [list 1717@nahpc-lic23.nahpc2.arm.com 1717@nahpc-lic22.nahpc2.arm.com] :] }           
+      append-path MGLS_LICENSE_FILE [join [list 1717@euhpc-lic14.euhpc.arm.com 1717@euhpc-lic15.euhpc.arm.com 1717@euhpc-lic16.euhpc.arm.com 1717@euhpc-lic07.euhpc.arm.com 1717@blr-lic04.blr.arm.com 1717@blr-lic03.blr.arm.com] :]
+      } elseif {$licrand == 3.0} {
+      prepend-path MGLS_LICENSE_FILE [join [list 1717@nahpc-lic10.nahpc.arm.com 1717@nahpc-lic14.nahpc.arm.com 1717@nahpc-lic16.nahpc.arm.com 1717@nahpc-lic03.nahpc.arm.com 1717@nahpc-lic07.nahpc.arm.com] :]
+      if {[arm::this_site_is nahpc2]} {
+      prepend-path MGLS_LICENSE_FILE [join [list 1717@nahpc-lic22.nahpc2.arm.com 1717@nahpc-lic23.nahpc2.arm.com] :] 
+      } else {
+      append-path MGLS_LICENSE_FILE [join [list 1717@nahpc-lic22.nahpc2.arm.com 1717@nahpc-lic23.nahpc2.arm.com] :] }           
+      append-path MGLS_LICENSE_FILE [join [list 1717@euhpc-lic15.euhpc.arm.com 1717@euhpc-lic16.euhpc.arm.com 1717@euhpc-lic07.euhpc.arm.com 1717@euhpc-lic14.euhpc.arm.com 1717@blr-lic03.blr.arm.com 1717@blr-lic04.blr.arm.com] :]
+      } elseif {$licrand == 4.0} {
+      prepend-path MGLS_LICENSE_FILE [join [list 1717@nahpc-lic14.nahpc.arm.com 1717@nahpc-lic16.nahpc.arm.com 1717@nahpc-lic03.nahpc.arm.com 1717@nahpc-lic07.nahpc.arm.com 1717@nahpc-lic10.nahpc.arm.com] :]
+      if {[arm::this_site_is nahpc2]} {
+      prepend-path MGLS_LICENSE_FILE [join [list 1717@nahpc-lic23.nahpc2.arm.com 1717@nahpc-lic22.nahpc2.arm.com] :]
+      } else {
+      append-path MGLS_LICENSE_FILE [join [list 1717@nahpc-lic23.nahpc2.arm.com 1717@nahpc-lic22.nahpc2.arm.com] :] }
+      append-path MGLS_LICENSE_FILE [join [list 1717@euhpc-lic16.euhpc.arm.com 1717@euhpc-lic07.euhpc.arm.com 1717@euhpc-lic14.euhpc.arm.com 1717@euhpc-lic15.euhpc.arm.com 1717@blr-lic04.blr.arm.com 1717@blr-lic03.blr.arm.com] :]
+      } else {
+      prepend-path MGLS_LICENSE_FILE [join [list 1717@nahpc-lic16.nahpc.arm.com 1717@nahpc-lic03.nahpc.arm.com 1717@nahpc-lic07.nahpc.arm.com 1717@nahpc-lic10.nahpc.arm.com 1717@nahpc-lic14.nahpc.arm.com] :]
+      if {[arm::this_site_is nahpc2]} {
+      prepend-path MGLS_LICENSE_FILE [join [list 1717@nahpc-lic22.nahpc2.arm.com 1717@nahpc-lic23.nahpc2.arm.com] :]
+      } else {
+      append-path MGLS_LICENSE_FILE [join [list 1717@nahpc-lic22.nahpc2.arm.com 1717@nahpc-lic23.nahpc2.arm.com] :] }
+      append-path MGLS_LICENSE_FILE [join [list 1717@euhpc-lic15.euhpc.arm.com 1717@euhpc-lic16.euhpc.arm.com 1717@euhpc-lic07.euhpc.arm.com 1717@euhpc-lic14.euhpc.arm.com 1717@blr-lic03.blr.arm.com 1717@blr-lic04.blr.arm.com] :]
+      }
+}
+# Asia Pacific
+if {[arm::this_site_is asiapac]} {
+   if {[expr floor( rand() * 2)] == 1.0} {
+      prepend-path MGLS_LICENSE_FILE [join [list 1717@blr-lic03.blr.arm.com 1717@blr-lic04.blr.arm.com 1717@nahpc-lic03.nahpc.arm.com 1717@nahpc-lic07.nahpc.arm.com 1717@nahpc-lic10.nahpc.arm.com 1717@nahpc-lic14.nahpc.arm.com 1717@nahpc-lic16.nahpc.arm.com 1717@nahpc-lic22.nahpc2.arm.com 1717@nahpc-lic23.nahpc2.arm.com 1717@euhpc-lic16.euhpc.arm.com 1717@euhpc-lic07.euhpc.arm.com 1717@euhpc-lic14.euhpc.arm.com 1717@euhpc-lic15.euhpc.arm.com] :]
+      } else {
+      prepend-path MGLS_LICENSE_FILE [join [list 1717@blr-lic04.blr.arm.com 1717@blr-lic03.blr.arm.com 1717@euhpc-lic07.euhpc.arm.com 1717@euhpc-lic14.euhpc.arm.com 1717@euhpc-lic15.euhpc.arm.com 1717@euhpc-lic16.euhpc.arm.com 1717@nahpc-lic07.nahpc.arm.com 1717@nahpc-lic10.nahpc.arm.com 1717@nahpc-lic14.nahpc.arm.com 1717@nahpc-lic16.nahpc.arm.com 1717@nahpc-lic23.nahpc2.arm.com 1717@nahpc-lic22.nahpc2.arm.com 1717@nahpc-lic03.nahpc.arm.com] :]
+      }
+}
+
+
